@@ -1,5 +1,8 @@
 import discord
 from environs import Env # new
+from dotenv import load_dotenv
+
+load_dotenv()
 
 env = Env() # new
 env.read_env() # new
@@ -25,4 +28,4 @@ async def on_message(message):
         await message.channel.send("hello, I am a bot")
 
 
-client.run(env.str("DISCORD_TOKEN"))
+client.run(os.getenv("DISCORD_TOKEN"))
