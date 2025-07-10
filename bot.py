@@ -1,4 +1,8 @@
 import discord
+from environs import Env # new
+
+env = Env() # new
+env.read_env() # new
 
 # Создаем объект intents с настройками по умолчанию
 intents = discord.Intents.default()
@@ -21,4 +25,4 @@ async def on_message(message):
         await message.channel.send("hello, I am a bot")
 
 
-client.run("MTM5Mjc5Mjc5MjgzMjY3NTg5MA.Gtk5ao.HVQbFg_JyRtFL3SrlJub_JlnRd7SNV6G5IyQjQ")
+client.run(env.str("DISCORD_TOKEN"))
