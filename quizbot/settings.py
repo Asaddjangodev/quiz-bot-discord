@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd paty
+    "rest_framework",
     # Local
-    "quiz.apps.QuizConfig"
+    "quiz.apps.QuizConfig",
 ]
 
 MIDDLEWARE = [
