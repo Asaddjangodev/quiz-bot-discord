@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-6$4y)f^go&yj(oedynz_+y%&7$7v9zbx!+@+x%ly!8br*s)gxv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     # Local
     "quiz.apps.QuizConfig",
+    "score.apps.ScoreConfig",
 ]
 
 MIDDLEWARE = [
