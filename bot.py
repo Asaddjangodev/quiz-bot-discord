@@ -19,6 +19,17 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
+def get_score():
+    leaderboard = ''
+    id = 1
+    response = requests.get("http://127.0.0.1:8000/api/score/leaderboard/")
+    json_data = json.loads(response.text) # Автоматически парсит JSON
+
+
+    for item in json_data:
+        leaderboard += str(id) + ' ' + item['name'] + '. ' + str(item['points']) + '\n'
+        id += 1
+    return(leaderboard)
 def update_score(user, points):
     url = 'http://127.0.0.1:8000/api/score/update/'
     new_score = {'name': user, 'points': points}
@@ -57,13 +68,18 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+
+    if message.content.startswith('$score'):
+        leaderboard = get_score()
+        await message.channel.send(leaderboard)
+
     if message.content.startswith("$question"):
 
         qs, answer, points = get_question()
         await message.channel.send(qs)
 
         def check(m):
-            return m.author == message.author and m.content.isdigit()
+            return m.content.isdigit() == True
 
         try:
             guess = await client.wait_for('message', check=check, timeout=10.0)
