@@ -5,6 +5,7 @@ import requests
 import os
 import json
 import asyncio
+import requests
 
 load_dotenv()
 
@@ -18,11 +19,19 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
+def update_score(user, points):
+    url = 'http://127.0.0.1:8000/api/score/update/'
+    new_score = {'name': user, 'points': points}
+    x = requests.post(url, data = new_score)
+
+    return
+
 def get_question():
     qs = ''
     id = 1
     answer = 0
-    response = requests.get("https://aqueous-thicket-58289-3c131321ece5.herokuapp.com/api/random/")
+    points = 0
+    response = requests.get("http://127.0.0.1:8000/api/random/")
     json_data = json.loads(response.text)
     qs += "Question: \n"
     qs += json_data[0]['title'] + '\n'
@@ -34,7 +43,9 @@ def get_question():
             answer = id
         id += 1
 
-    return(qs, answer)
+    points = json_data[0]['points']
+
+    return(qs, answer, points)
 
 
 @client.event
@@ -47,19 +58,23 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.startswith("$question"):
-        qs, answer = get_question()
+
+        qs, answer, points = get_question()
         await message.channel.send(qs)
 
         def check(m):
             return m.author == message.author and m.content.isdigit()
 
         try:
-            guess = await client.wait_for('message', check=check, timeout=2.0)
+            guess = await client.wait_for('message', check=check, timeout=10.0)
         except asyncio.TimeoutError:
             return await message.channel.send("Sorry, you took too long")
 
         if int(guess.content) == answer:
-            await message.channel.send("You are right!")
+            user = guess.author
+            msg = str(guess.author.name) + ' got it right! +' + str(points) + ' points'
+            await message.channel.send(msg)
+            update_score(user, points)
         else:
             await message.channel.send("Oops. That is not right.")
 

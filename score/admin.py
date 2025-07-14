@@ -7,5 +7,5 @@ from . import models
 class ScoreAdmin(admin.ModelAdmin):
     list_display = [
         "name",
-        "point",
+        "points",
     ]

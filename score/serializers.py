@@ -8,5 +8,5 @@ class ScoreSerializer(serializers.ModelSerializer):
         model = Score
         fields = [
             "name",
-            "point",
+            "points",
         ]
