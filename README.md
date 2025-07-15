@@ -1,7 +1,10 @@
 # quiz-bot-discord
 🎮 QuizBot - Discord Quiz Bot🤖
+
 📝Project Description
+
 QuizBot is an interactive Discord bot that allows you to host engaging quizzes with questions from various categories. The bot uses Django REST Framework as a backend to store questions and player statistics.
+
 
 🌟Key Features
 
@@ -13,15 +16,17 @@ QuizBot is an interactive Discord bot that allows you to host engaging quizzes w
 
 🔌REST API for integration with other services
 
+
 💻Technologies
 
 Backend: Django 5, Django REST Framework
 
 Database: SQLite3
 
-Discord bot: discord.py (version 2.0+)
+Discord bot: Discord API discord.py (version 2.0+)
 
 Deployment: Heroku (optional)
+
 
 🎮Bot Usage
 
