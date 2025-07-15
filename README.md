@@ -28,11 +28,15 @@ Deployment: Heroku (optional)
 🔹Basic Commands
 
 $question - to get a question▶️
+
 $score - to get a list of leaders
 
 API Endpoints
+
 The bot uses following API endpoints:
 
 GET /api/random/ - Get questions 🎲 
+
 POST /api/score/update/ - Update score 💯
+
 GET /api/score/leaderboard/ - Get leaderboard  📊 
