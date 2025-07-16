@@ -34,8 +34,11 @@ Deployment: Heroku (optional)
 
 $question - to get a question▶️
 
-$score - to get a list of leaders
 <img width="657" height="225" alt="image" src="https://github.com/user-attachments/assets/6202edc4-0c98-4af0-a209-0a1fafcf62e1" />
+
+$score - to get a list of leaders
+
+<img width="650" height="271" alt="image" src="https://github.com/user-attachments/assets/5dd04790-48b5-4276-a22f-52ec844334c5" />
 
 
 API Endpoints
